@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SocietyMemberReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8fb2debe-782b-402e-8417-90bae0435e68">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="flat" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select m.member_id, m.owner_name, m.dob, m.gender, m.mobile_no, m.aadhar_no, m.email_id, m.rental_status, m.flat_maintenance, m.buy_date, w.wing_name, f.flat_no from societymembers m inner join society_flats f on m.flat_id = f.flat_id inner join society_wings w on m.wing_id = w.wing_id where f.flat_no = $P{flat}]]>
+	</queryString>
+	<field name="member_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="owner_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mobile_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aadhar_no" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rental_status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="flat_maintenance" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="buy_date" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="wing_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="flat_no" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="wing_name">
+		<groupExpression><![CDATA[$F{wing_name}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="26" width="555" height="24" forecolor="#B89F7D" backcolor="#9DB1B8" uuid="e8d468bb-defc-467c-be5a-501d7f5dee55"/>
+					<staticText>
+						<reportElement x="4" y="0" width="282" height="24" forecolor="#000000" uuid="194805cd-993e-4201-820d-319fc73b4195"/>
+						<textElement>
+							<font size="16"/>
+						</textElement>
+						<text><![CDATA[Member Details]]></text>
+					</staticText>
+				</frame>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement style="Column header" x="423" y="0" width="132" height="26" forecolor="#000000" uuid="74987e68-d5b7-4850-8cb7-a4ac9ad361ff"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="1" width="555" height="56" uuid="303c1ea7-76cd-4942-bc2e-47e4e68a30c3"/>
+				<textElement textAlignment="Center">
+					<font size="38" isBold="false"/>
+				</textElement>
+				<text><![CDATA[GangaKunj Society]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="169" y="63" width="217" height="29" uuid="1ffbe434-e859-429e-aa2f-debc249de18f"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Society Member Report]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="57" width="555" height="2" uuid="e5b0cd8a-d5b9-484f-b66a-1cdc077a0470"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="432" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="14" width="120" height="25" uuid="abb6a0df-2776-4e1d-a1e2-281a30581e8c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Wing :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="14" width="150" height="25" uuid="d2177a58-7982-4a6d-8957-da66c05df7c3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wing_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="14" width="120" height="25" uuid="9ff91aec-497c-47b9-a30f-093b22fb88db"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Flat Number :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="405" y="14" width="150" height="25" uuid="c033b4bb-7c83-408b-bab1-91976991bcf3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{flat_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="52" width="120" height="25" uuid="5ca71530-ea4c-42e5-bba7-8c2ba0be9f7c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Owner Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="52" width="250" height="25" uuid="f5d8b93a-8822-415e-8a70-efb8d2d4e13e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{owner_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="90" width="120" height="25" uuid="659ef6f7-493e-4226-942f-a05c955edfe2"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Birth Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="90" width="250" height="25" uuid="f28d6485-9c0d-4bfa-8f68-98d24514743e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dob}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="128" width="120" height="25" uuid="73d87bb2-5302-431b-a8d5-17b03f12f55b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gender :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="128" width="250" height="25" uuid="ae48542e-08ed-4779-9c19-b0ad1aef8e88"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="166" width="120" height="25" uuid="d083b65f-ea67-4fae-bfdf-c8a60d702055"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contact Number :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="166" width="250" height="25" uuid="174e2a50-13ce-4705-95e0-fdcbe9263ab3"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mobile_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="242" width="120" height="25" uuid="10264ebb-bcd6-426a-b60c-0766312e1cfd"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aadhar Number :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="242" width="250" height="25" uuid="5ca9b796-d1c2-4e57-90c5-d694fc7d6039"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aadhar_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="204" width="120" height="25" uuid="cedfe01e-4d22-404a-b10a-f3f28579ab6e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email Id :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="204" width="250" height="25" uuid="120923bc-19d6-4217-b9e1-6844200fdf35"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="280" width="120" height="25" uuid="f970df42-79a9-4261-9e9e-4bdfd6213fff"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Flat Buy Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="280" width="250" height="25" uuid="ffec8894-c02a-4060-8335-0b9208aa9eab"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{buy_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="318" width="120" height="25" uuid="69c7aa79-c74c-4342-9770-f5a91fddb91b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Maintenance of Flat : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="318" width="250" height="25" uuid="ef09f141-30a5-4ec7-8b49-1c2e84c5cf2c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{flat_maintenance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="18" y="361" width="120" height="25" uuid="93539883-8b66-4ae2-8163-8b92843264a9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rented (Yes/No) :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="361" width="250" height="25" uuid="3c223143-7c81-4d29-bd21-41e1372c9c34"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rental_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="0b7f3330-8285-4ef9-a96a-cbbe0a1c8319"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="-1" width="40" height="13" forecolor="#FFFFFF" uuid="12f0c5f7-fd33-4508-8e7e-845234ef04d2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="-1" width="80" height="13" forecolor="#FFFFFF" uuid="df7eed9e-ffed-484c-817e-407b3fdda30d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>
